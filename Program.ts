@@ -5,10 +5,12 @@ import { Joueur } from "./Joueur";
 import { MonstreFacile } from "./MonstreFacile";
 import { MonstreDifficile } from "./MonstreDifficile";
 import { De } from "./De";
+import { BossDeFin } from "./BossDeFin";
 
 class Program {
   static main(): void {
     this.jeu1();
+    this.jeu2();
   }
 
   private static jeu1(): void {
@@ -43,9 +45,27 @@ class Program {
   }
 
   private static FabriqueDeMonstre(): MonstreFacile {
-    const de = new De();
-    if (de.lanceLeDe() >= 3) return new MonstreFacile();
+    if (De.lanceLeDe() >= 3) return new MonstreFacile();
     else return new MonstreDifficile();
+  }
+
+  private static jeu2(): void {
+    const Aude = new Joueur(150);
+    const Boss = new BossDeFin(250);
+
+    while (Boss.estVivant && Aude.estVivant) {
+      console.log(
+        `Points de vie du joueur : ` +
+          Aude.pointsDeVie +
+          ", Points de vie du boss : " +
+          Boss.pointsDeVie
+      );
+      Aude.attaque(Boss);
+      if (Boss.estVivant) Boss.attaque(Aude);
+    }
+
+    if (Aude.estVivant) console.log("Bravo, vous avez battu le boss !");
+    else console.log("Snif, vous êtes mort...");
   }
 }
 

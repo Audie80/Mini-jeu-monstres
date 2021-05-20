@@ -5,7 +5,6 @@ export class MonstreFacile {
   // Propriétés
   private degats = 10;
   private _estVivant: boolean;
-  protected de: De; // de est "protected" car exposé à la classe fille MonstreDifficile
 
   // Getter & setter
   public get estVivant(): boolean {
@@ -18,23 +17,17 @@ export class MonstreFacile {
   // Constructeur
   constructor() {
     this.estVivant = true;
-    this.de = new De();
   }
 
   // Attaque du monstre
   public attaque(joueur: Joueur): void {
-    let deMonstre = this.lanceLeDe();
-    let deJoueur = joueur.lanceLeDe();
+    let deMonstre = De.lanceLeDe();
+    let deJoueur = De.lanceLeDe();
     if (deMonstre > deJoueur) joueur.subitDegats(this.degats);
   }
 
   // Mort du monstre
   public subitDegats(): void {
     this.estVivant = false;
-  }
-
-  // Jet de dé
-  public lanceLeDe(): number {
-    return this.de.lanceLeDe();
   }
 }

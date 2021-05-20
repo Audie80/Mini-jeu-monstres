@@ -1,5 +1,6 @@
 export class De {
-  public lanceLeDe(): number {
-    return Math.floor(Math.random() * 6) + 1;
+  public static lanceLeDe(max?: number): number {
+    if (!max) max = 6;
+    return Math.floor(Math.random() * max) + 1;
   }
 }

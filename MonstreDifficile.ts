@@ -1,3 +1,4 @@
+import { De } from "./De";
 import { Joueur } from "./Joueur";
 import { MonstreFacile } from "./MonstreFacile";
 
@@ -13,7 +14,7 @@ export class MonstreDifficile extends MonstreFacile {
 
   // Deuxième attaque du monstre
   private sortMagique(): number {
-    let deMonstre = this.lanceLeDe();
+    let deMonstre = De.lanceLeDe();
     if (deMonstre === 6) return 0;
     else return this.degatsSort * deMonstre;
   }
